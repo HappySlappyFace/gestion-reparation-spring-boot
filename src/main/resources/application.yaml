@@ -1,0 +1,21 @@
+
+spring:
+  application:
+    name: ITManagement
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:postgresql://localhost:5332/genielogiciel
+    username: gl
+    password: password
+    driverClassName: org.postgresql.Driver
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 1023531572519-0nq22e30vuhket9e1abep99m2tlicc2f.apps.googleusercontent.com
+            client-secret: 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
