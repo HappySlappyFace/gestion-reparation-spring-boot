@@ -32,6 +32,6 @@ public class DemandeReparation {
 
     @OneToMany(mappedBy = "demandeReparation")
     private List<Reparation> reparations;
-    // Getters and Setters
+
 
 }

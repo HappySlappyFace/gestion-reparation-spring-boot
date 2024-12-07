@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/api/v1/auth/**").permitAll()  // Permit all on auth endpoints
                         .requestMatchers(HttpMethod.GET, "/api/v1/demo-controller/**").hasRole("USER")
+                        .requestMatchers("/api/v1/CRUD/**").hasAnyRole("REPRESENTATIVE", "TECHNICIAN")
 
                         .anyRequest().authenticated()  // Require authentication for all other endpoints
                 )
