@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/v1/CRUD/demandeReparation")
@@ -28,6 +29,7 @@ public class DemandeReparationController {
     @PostMapping
     public DemandeReparation createDemandeReparation(@RequestBody DemandeReparation demandeReparation) {
         // Fetch client using the ID from the DemandeReparation (using getIdClient)
+        System.out.println("idClient: "+demandeReparation.getClient().toString());
         Client client = clientService.findById(demandeReparation.getClient().getIdClient()); // Corrected to getIdClient()
 
         // Fetch appareil using the ID from the DemandeReparation (using getAppareil)

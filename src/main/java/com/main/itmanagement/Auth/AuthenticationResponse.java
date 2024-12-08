@@ -1,6 +1,5 @@
 package com.main.itmanagement.Auth;
 
-import com.main.itmanagement.Entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -36,14 +36,14 @@ public class JitAuthenticationFilter extends OncePerRequestFilter {
         jwt= authHeader.substring(7);
         userUsername =jwtService.extractUsername(jwt);
         if (userUsername != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            logger.info("JWT Token: " + jwt);
+//            logger.info("JWT Token: " + jwt);
             UserDetails userDetails= this.userDetailsService.loadUserByUsername(userUsername);
             if (jwtService.isTokenValid(jwt, userDetails)) {
-                logger.info("User Authorities: " + userDetails.getAuthorities());
+//                logger.info("User Authorities: " + userDetails.getAuthorities());
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
-                logger.info("Authentication in Context: " + SecurityContextHolder.getContext().getAuthentication());
+//                logger.info("Authentication in Context: " + SecurityContextHolder.getContext().getAuthentication());
 
             }
         }
