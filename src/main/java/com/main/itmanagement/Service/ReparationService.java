@@ -5,6 +5,8 @@ import com.main.itmanagement.Repository.ReparationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReparationService {
 
@@ -22,9 +24,10 @@ public class ReparationService {
         return reparationRepository.findById(id).orElseThrow(() -> new RuntimeException("Reparation not found"));
     }
 
-    public Iterable<Reparation> getAllReparations() {
-        return reparationRepository.findAll();
+    public List<Reparation> getAllReparations() {
+        return reparationRepository.findAll(); // Ensure `findAll()` returns a List
     }
+
 
     public void deleteReparation(int id) {
         Reparation reparation = reparationRepository.findById(id)

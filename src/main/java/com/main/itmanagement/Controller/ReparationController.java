@@ -1,13 +1,14 @@
 package com.main.itmanagement.Controller;
 
 import com.main.itmanagement.Entities.Reparation;
+import com.main.itmanagement.Entities.ReparationDTO;
 import com.main.itmanagement.Service.ReparationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/CRUD/reparation")
@@ -18,9 +19,10 @@ public class ReparationController {
     private ReparationService reparationService;
 
     // Create a new Reparation
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<Reparation> createReparation(@RequestBody Reparation reparation) {
         try {
+            System.out.println(reparation.toString());
             // Save the Reparation and return the saved entity
             Reparation savedReparation = reparationService.createReparation(reparation);
             return ResponseEntity.ok(savedReparation);
@@ -31,15 +33,13 @@ public class ReparationController {
 
     // Get all Reparations
     @GetMapping
-    public ResponseEntity<List<Reparation>> getAllReparations() {
-        Iterable<Reparation> reparationsIterable = reparationService.getAllReparations();
-
-        // Convert Iterable to List
-        List<Reparation> reparations = new ArrayList<>();
-        reparationsIterable.forEach(reparations::add);
-
-        return ResponseEntity.ok(reparations);
+    public List<ReparationDTO> getAllReparations() {
+        return reparationService.getAllReparations()
+                .stream()
+                .map(ReparationDTO::new)
+                .collect(Collectors.toList());
     }
+
 
     // Get Reparation by ID
     @GetMapping("/{id}")

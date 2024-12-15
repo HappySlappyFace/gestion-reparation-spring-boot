@@ -1,5 +1,6 @@
 package com.main.itmanagement.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,6 +33,7 @@ public class DemandeReparation {
     private Appareil appareil;
 
     @OneToMany(mappedBy = "demandeReparation")
+    @JsonManagedReference
     private List<Reparation> reparations;
 
 

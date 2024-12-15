@@ -23,15 +23,18 @@ public class ClientController {
         Client savedClient = clientService.saveClient(client);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedClient);
     }
+
     @GetMapping("/{id}")
     public Client getClientById(@PathVariable int id) {
         return clientRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Client not found with id " + id));
     }
+
     @GetMapping  // New method to fetch all clients
     public List<Client> getAllClients() {
         return clientRepository.findAll();
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Client> updateClient(@PathVariable int id, @RequestBody Client client) {
         Client existingClient = clientRepository.findById(id)
