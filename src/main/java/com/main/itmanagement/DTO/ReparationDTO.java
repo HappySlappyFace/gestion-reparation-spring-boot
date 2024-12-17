@@ -14,12 +14,12 @@ public class ReparationDTO {
     private String description;
     private double tarifHMO;
     private int tempsMO;
-    private Integer idDemande; // Flattened field for demandeReparation ID
-    private String pieceName; // Part name
-    private Double prixHT;    // HT price
-    private Double prixTTC;   // TTC price
+    private Integer idDemande; // ID of the linked repair request
+    private String pieceName;  // Part name
+    private Double prixHT;     // HT price
+    private Double prixTTC;    // TTC price
 
-    // Constructor
+    // Constructor to map entity to DTO
     public ReparationDTO(Reparation reparation) {
         this.idReparation = reparation.getIdReparation();
         this.dateRep = reparation.getDateRep();
@@ -29,12 +29,8 @@ public class ReparationDTO {
         this.idDemande = reparation.getDemandeReparation() != null
                 ? reparation.getDemandeReparation().getIdDemande()
                 : null;
-
-        // If a part is linked, include its price and name
-//        if (reparation.getPiece() != null) {
-//            this.pieceName = reparation.getPiece().getNom();
-//            this.prixHT = reparation.getPiece().getPrixHT();
-//            this.prixTTC = reparation.getPiece().getPrixTTC();
-//        }
+        this.pieceName = reparation.getPiece() != null ? reparation.getPiece().getNom() : null;
+        this.prixHT = reparation.getPiece() != null ? reparation.getPiece().getPrixHT() : null;
+        this.prixTTC = reparation.getPiece() != null ? reparation.getPiece().getPrixTTC() : null;
     }
 }

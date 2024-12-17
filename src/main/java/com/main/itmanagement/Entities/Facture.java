@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,8 +20,7 @@ public class Facture {
     private double montantTotal;
     private String numero;
 
-    @ManyToOne
-    @JoinColumn(name = "idReparation")
-    private Reparation reparation;
+    @OneToMany(mappedBy = "facture", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Reparation> reparations; // Updated to a List
 
 }

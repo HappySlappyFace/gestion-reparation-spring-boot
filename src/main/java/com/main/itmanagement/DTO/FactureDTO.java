@@ -1,8 +1,17 @@
 package com.main.itmanagement.DTO;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class FactureDTO {
+    private int idFacture; // Add this field
     private String numero;
     private Date date;
     private double montantTotal;
@@ -14,10 +23,4 @@ public class FactureDTO {
         this.montantTotal = montantTotal;
         this.reparations = reparations;
     }
-
-    // Getters and Setters
-    public String getNumero() { return numero; }
-    public Date getDate() { return date; }
-    public double getMontantTotal() { return montantTotal; }
-    public List<ReparationDTO> getReparations() { return reparations; }
 }

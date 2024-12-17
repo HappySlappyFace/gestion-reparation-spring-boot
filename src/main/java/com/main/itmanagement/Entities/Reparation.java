@@ -1,22 +1,19 @@
 package com.main.itmanagement.Entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.util.Date;
 
 @Entity
 @Getter
 @Setter
-@ToString
 public class Reparation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int idReparation;
 
     private Date dateRep;
@@ -25,8 +22,16 @@ public class Reparation {
     private int tempsMO;
 
     @ManyToOne
-    @JoinColumn(name = "demande_reparation_id")  // Foreign key linking to DemandeReparation
+    @JoinColumn(name = "demande_reparation_id")
     @JsonBackReference
     private DemandeReparation demandeReparation;
+
+    @ManyToOne
+    @JoinColumn(name = "idPiece") // Foreign key linking to PieceRechange
+    private PieceRechange piece;  // Represents the part used in the repair
+
+    @ManyToOne
+    @JoinColumn(name = "id_facture")
+    private Facture facture;
 
 }

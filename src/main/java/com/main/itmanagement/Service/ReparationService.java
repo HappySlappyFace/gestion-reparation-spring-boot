@@ -1,11 +1,13 @@
 package com.main.itmanagement.Service;
 
+import com.main.itmanagement.DTO.ReparationDTO;
 import com.main.itmanagement.Entities.Reparation;
 import com.main.itmanagement.Repository.ReparationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReparationService {
@@ -24,8 +26,11 @@ public class ReparationService {
         return reparationRepository.findById(id).orElseThrow(() -> new RuntimeException("Reparation not found"));
     }
 
-    public List<Reparation> getAllReparations() {
-        return reparationRepository.findAll(); // Ensure `findAll()` returns a List
+    public List<ReparationDTO> getAllReparations() {
+        return reparationRepository.findAll()
+                .stream()
+                .map(ReparationDTO::new)
+                .collect(Collectors.toList());
     }
 
 

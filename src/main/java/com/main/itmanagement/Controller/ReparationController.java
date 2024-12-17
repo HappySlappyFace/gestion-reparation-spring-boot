@@ -34,10 +34,7 @@ public class ReparationController {
     // Get all Reparations
     @GetMapping
     public List<ReparationDTO> getAllReparations() {
-        return reparationService.getAllReparations()
-                .stream()
-                .map(ReparationDTO::new)
-                .collect(Collectors.toList());
+        return reparationService.getAllReparations();
     }
 
 
