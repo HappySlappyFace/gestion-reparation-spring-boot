@@ -1,7 +1,7 @@
 package com.main.itmanagement.Controller;
 
 import com.main.itmanagement.Entities.Reparation;
-import com.main.itmanagement.Entities.ReparationDTO;
+import com.main.itmanagement.DTO.ReparationDTO;
 import com.main.itmanagement.Service.ReparationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

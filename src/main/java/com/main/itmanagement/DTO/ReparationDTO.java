@@ -1,5 +1,6 @@
-package com.main.itmanagement.Entities;
+package com.main.itmanagement.DTO;
 
+import com.main.itmanagement.Entities.Reparation;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,9 @@ public class ReparationDTO {
     private double tarifHMO;
     private int tempsMO;
     private Integer idDemande; // Flattened field for demandeReparation ID
+    private String pieceName; // Part name
+    private Double prixHT;    // HT price
+    private Double prixTTC;   // TTC price
 
     // Constructor
     public ReparationDTO(Reparation reparation) {
@@ -25,7 +29,12 @@ public class ReparationDTO {
         this.idDemande = reparation.getDemandeReparation() != null
                 ? reparation.getDemandeReparation().getIdDemande()
                 : null;
-    }
 
-    // Getters and setters
+        // If a part is linked, include its price and name
+//        if (reparation.getPiece() != null) {
+//            this.pieceName = reparation.getPiece().getNom();
+//            this.prixHT = reparation.getPiece().getPrixHT();
+//            this.prixTTC = reparation.getPiece().getPrixTTC();
+//        }
+    }
 }
